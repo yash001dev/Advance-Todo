@@ -73,7 +73,6 @@ function Signup() {
         />
         {_.size(errors) >= 1 && (
           <p className="text11 alert">
-            {console.log("EXECURE ICON")}
             <span className="bi bi-exclamation-circle mx-2"></span>
             {errors?.password && "Invalid password"}
             {errors?.email && " Invalid email address"}

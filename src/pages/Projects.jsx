@@ -50,10 +50,7 @@ function Projects() {
     (task) => task.status === "inprogress"
   );
   const completedTask = taskList.filter((task) => task.status === "completed");
-  console.log("TODO TASKS", todoTask);
-  // function addTodo() {
-  //   console.log("ADD todo called");
-  // }
+
   const onSubmit = (data, type) => {
     dispatch(
       addTaskDetails({
@@ -68,7 +65,6 @@ function Projects() {
 
   function doToggle(modelName) {
     setModal(!modal);
-    debugger;
     setCurrentModelName(modelName);
   }
   return (

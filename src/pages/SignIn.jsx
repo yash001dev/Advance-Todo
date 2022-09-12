@@ -27,8 +27,6 @@ function SignIn() {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log("ALL USER DETAILS", allUserDetails);
-
   return (
     <>
       <p style={{ marginBottom: "0.3rem" }} className="text-21">
