@@ -22,3 +22,20 @@
             }
     }
 }
+
+.card-button{
+    background: #ECF3F3;
+    border-radius: 7px;
+    color:#297a6b;
+    font-family: 'Poppins';
+    border:#297a6b;
+    min-height: 2.0rem;
+
+    &:hover,
+    &:focus{
+        background: #297a6b;
+        background-color: #297a6b;
+        border-color: #297a6b;
+        color: #fff;
+    }
+}

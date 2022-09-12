@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import loginicon from "../assets/images/login.svg";
 import { useAuth } from "../hooks/useAuth";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import SignIn from "./SignIn";
 import Signup from "./Signup";
 
 function Login() {
   let { user } = useAuth();
-  const navigate = useNavigate();
   if (user) {
     window.location.assign("/dashboard");
   }

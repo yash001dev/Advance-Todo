@@ -1,0 +1,61 @@
+.text-21 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 101.1%;
+    /* or 21px */
+
+
+    color: #1A3B58;
+}
+
+.text-10 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 15px;
+    /* identical to box height */
+
+    &.grey {
+        color: #999999;
+    }
+}
+
+.text11 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+
+    &.alert {
+        text-align: center;
+        color: #F65B2A;
+    }
+}
+
+.text20 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 101.1%;
+    /* or 20px */
+
+    letter-spacing: 0.03em;
+
+    &.dark {
+        color: #161616;
+    }
+}
+
+.text14{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 101.1%;
+    color: #212121;
+}
