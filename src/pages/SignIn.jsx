@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import FillButton from "../components/FillButton";
 import InputText from "../components/InputText";
+import { useGetUsersQuery } from "../service/apiSlice";
 
 function SignIn() {
   const {
@@ -14,8 +15,20 @@ function SignIn() {
     mode: "onSubmit",
   });
   const onSubmit = (data) => {
-    console.log(data);
+    let foundUser = allUserDetails.filter(
+      (user) => user.email === data.email && user.password === data.password
+    );
+    if (foundUser.length > 0) {
+      localStorage.setItem("user", JSON.stringify(foundUser[0]));
+      window.location.reload();
+    }
   };
+  const { data: allUserDetails } = useGetUsersQuery({
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log("ALL USER DETAILS", allUserDetails);
+
   return (
     <>
       <p style={{ marginBottom: "0.3rem" }} className="text-21">

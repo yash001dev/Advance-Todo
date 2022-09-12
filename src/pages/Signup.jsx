@@ -2,36 +2,47 @@ import _ from "lodash";
 import { useForm } from "react-hook-form";
 import FillButton from "../components/FillButton";
 import InputText from "../components/InputText";
-import { addUserDetails } from "../reducers/userDetailsSlice";
+import { useAddNewUserMutation } from "../service/apiSlice";
 
 function Signup() {
   const {
     control,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       email: "",
-      fname: "",
+      name: "",
       password: "",
     },
     mode: "onSubmit",
     shouldFocusError: true,
   });
+
+  const [addNewUser] = useAddNewUserMutation();
+
   const onSubmit = (data) => {
-    localStorage.setItem(
-      "NewUserDetails",
-      JSON.stringify({ ...data, timeStamp: Date.now() })
-    );
-    addUserDetails(data);
-    alert("User Added Successfully");
+    addNewUser(data)
+      .unwrap()
+      .then((res) => {
+        if (res) {
+          reset();
+          alert("User added successfully");
+          window.location.assign("/");
+        }
+      })
+      .then((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputText
           control={control}
-          name="fname"
+          name="name"
           type="text"
           placeholder="Full Name"
           rules={{
@@ -66,7 +77,7 @@ function Signup() {
             <span className="bi bi-exclamation-circle mx-2"></span>
             {errors?.password && "Invalid password"}
             {errors?.email && " Invalid email address"}
-            {errors?.fname && " Invalid Full name"}
+            {errors?.name && " Invalid Full name"}
           </p>
         )}
         <FillButton type="submit" btnText="Sign up" />
