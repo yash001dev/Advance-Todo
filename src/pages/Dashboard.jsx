@@ -80,13 +80,6 @@ function Dashboard() {
         </div>
       </div>
       <div className="col-9 right-sec">
-        {/* <Routes>
-          <Route path="/" element={<Overview />} />
-          <Route path="/stats" element={<Stats />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/calendar" element={<Calendar />} />
-        </Routes> */}
         <Outlet />
       </div>
     </div>

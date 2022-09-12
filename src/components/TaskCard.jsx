@@ -1,11 +1,11 @@
 import React from "react";
 
-function TaskCard() {
+function TaskCard({ data }) {
   return (
-    <div className="task-card px-3 py-4 mt-3">
-      <p className="header">Design-App</p>
+    <div key={data.id} className="task-card px-3 py-4 mt-3">
+      <p className="header">{data.taskName}</p>
       <p className="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.
+        {data.taskDescription ? data.taskDescription : "No Description"}
       </p>
     </div>
   );
