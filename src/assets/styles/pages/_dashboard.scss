@@ -1,0 +1,23 @@
+a{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 101.1%;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+
+    color:#9A9A9A;
+
+    &:hover{
+        color: #212121;
+    }
+}
+
+.active-link{
+    color: #212121;
+}
+
+.left-sec{
+    border-right: 1.5px solid #F0F0F0;
+}

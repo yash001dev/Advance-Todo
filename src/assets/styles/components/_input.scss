@@ -1,0 +1,12 @@
+.form-control{
+    font-family: "Poppins", sans-serif;
+    &:focus{
+        border: 1px solid #00000086;
+        box-shadow:none;
+    }
+
+    &:invalid[focused="true"] {
+            border: 1px solid #F65B2A;
+    }
+}
+

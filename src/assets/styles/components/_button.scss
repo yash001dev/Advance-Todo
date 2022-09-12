@@ -1,0 +1,24 @@
+.btn{
+    &.fillgreen{
+        font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 105.38%;
+            /* identical to box height, or 17px */
+            letter-spacing: 0.01em;
+            color: #FFFFFF;
+            background: #329C89;
+            border-radius: 8px;
+            border-color: #329C89;
+            padding-top: 3%;
+            padding-bottom: 3%;
+
+
+            &:hover{
+                background: #297a6b;
+                background-color: #297a6b;
+                border-color: #297a6b;
+            }
+    }
+}
