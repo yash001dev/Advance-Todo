@@ -21,3 +21,13 @@ a{
 .left-sec{
     border-right: 1.5px solid #F0F0F0;
 }
+
+.logout{
+    font-size: 17px;
+    color: #9A9A9A;
+
+    &:hover{
+        color: #212121;
+        cursor: pointer;
+    }
+}

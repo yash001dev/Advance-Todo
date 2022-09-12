@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function Dashboard() {
   let activeClassName = "active-link";
+  const { logout } = useAuth();
   let leftSec = [
     {
       name: "Overview",
@@ -36,12 +38,8 @@ function Dashboard() {
       icon: "bi bi-person",
       path: "/dashboard/profile",
     },
-    {
-      name: "Logout",
-      icon: "bi bi-box-arrow-right",
-      path: "/dashboard/logout",
-    },
   ];
+
   return (
     <div className="row">
       <div className="col-2 left-sec">
@@ -75,6 +73,17 @@ function Dashboard() {
                   {item.name}
                 </NavLink>
               ))}
+              <p
+                style={{ fontSize: "17px" }}
+                to={"/dashboard/logout"}
+                className="mb-5 logout"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <span className="bi bi-box-arrow-right me-4"></span>
+                Logout
+              </p>
             </nav>
           </div>
         </div>

@@ -6,14 +6,30 @@ import CustomModal from "../components/Modal";
 import TaskCard from "../components/TaskCard";
 import { addTaskDetails } from "../reducers/todoSlice";
 
-// const sec = [
-//   { name: "To do", status: "todo" },
-//   { name: "In Progress", status: "inprogress" },
-//   { name: "Completed", status: "completed" },
-// ];
+const sec = {
+  todo: {
+    name: "To do",
+    status: "todo",
+    modelTitle: "Let's Do Something New💡",
+    primaryBtnText: "Add Task",
+  },
+  inprogress: {
+    name: "In Progress",
+    status: "inprogress",
+    modelTitle: "You can🚧",
+    primaryBtnText: "Add Task",
+  },
+  completed: {
+    name: "Completed",
+    status: "completed",
+    modelTitle: "Finally🏅",
+    primaryBtnText: "Add Task",
+  },
+};
 
 function Projects() {
   const [modal, setModal] = useState(false);
+  const [currentModelName, setCurrentModelName] = useState("");
   const dispatch = useDispatch();
   const {
     control,
@@ -28,21 +44,32 @@ function Projects() {
       taskDescription: "",
     },
   });
-  const todoTasks = useSelector((state) => state.todoDetails);
-  console.log("TODO TASKS", todoTasks);
+  const taskList = useSelector((state) => state.todoDetails);
+  const todoTask = taskList.filter((task) => task.status === "todo");
+  const inprogressTask = taskList.filter(
+    (task) => task.status === "inprogress"
+  );
+  const completedTask = taskList.filter((task) => task.status === "completed");
+  console.log("TODO TASKS", todoTask);
   // function addTodo() {
   //   console.log("ADD todo called");
   // }
-  const onSubmit = (data) => {
+  const onSubmit = (data, type) => {
     dispatch(
-      addTaskDetails({ ...data, timeStamp: Date.now(), status: "todo" })
+      addTaskDetails({
+        ...data,
+        timeStamp: Date.now(),
+        status: currentModelName,
+      })
     );
     setModal(false);
     reset();
   };
 
-  function doToggle() {
+  function doToggle(modelName) {
     setModal(!modal);
+    debugger;
+    setCurrentModelName(modelName);
   }
   return (
     <div className="project-sec">
@@ -52,28 +79,60 @@ function Projects() {
           <div className="container-grey px-4 py-4 ">
             <div className="d-flex justify-content-between align-items-center mb-2">
               <span className="text14">To do</span>
-              <span className="count-text">{todoTasks.length}</span>
+              <span className="count-text">{todoTask.length}</span>
             </div>
             <button
-              onClick={doToggle}
+              onClick={() => doToggle("todo")}
               className="card-button text-center w-100"
             >
               <span className="bi bi-plus-lg"></span>
             </button>
-            {todoTasks.map((task) => (
+            {todoTask.map((task) => (
               <TaskCard key={task.key} data={task} />
             ))}
           </div>
           {/* <Modal show={true} /> */}
         </div>
-        <div className="col-4 progress-sec">Progress Sec</div>
-        <div className="col-4 completed-sec">Completed Sec</div>
+        <div className="col-4 progress-sec">
+          <div className="container-grey px-4 py-4 ">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <span className="text14">InProgress</span>
+              <span className="count-text">{inprogressTask.length}</span>
+            </div>
+            <button
+              onClick={() => doToggle("inprogress")}
+              className="card-button text-center w-100"
+            >
+              <span className="bi bi-plus-lg"></span>
+            </button>
+            {inprogressTask.map((task) => (
+              <TaskCard key={task.key} data={task} />
+            ))}
+          </div>
+        </div>
+        <div className="col-4 completed-sec">
+          <div className="container-grey px-4 py-4 ">
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <span className="text14">Completed</span>
+              <span className="count-text">{completedTask.length}</span>
+            </div>
+            <button
+              onClick={() => doToggle("completed")}
+              className="card-button text-center w-100"
+            >
+              <span className="bi bi-plus-lg"></span>
+            </button>
+            {completedTask.map((task) => (
+              <TaskCard key={task.key} data={task} />
+            ))}
+          </div>
+        </div>
       </div>
       <CustomModal
         toggle={doToggle}
         isOpen={modal}
-        modelTitle="Let's Do Something New"
-        primaryBtnText="Add Task"
+        modelTitle={sec[currentModelName]?.modelTitle || ""}
+        primaryBtnText={sec[currentModelName]?.primaryBtnText || ""}
         errors={errors}
         handleSubmit={handleSubmit(onSubmit)}
       >
